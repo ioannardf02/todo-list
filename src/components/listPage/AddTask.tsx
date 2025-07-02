@@ -5,13 +5,14 @@ const AddTask = () => {
     <form className="flex flex-row gap-4">
       <input
         placeholder="Enter your task..."
-        className="border-b-2 border-pink-700 p-4"
+        className="border-b-2 border-fuchsia-800 focus:outline-hidden lg:text-lg md:text-xl text-base"
       />
       <Button
-        text={"+"}
+        text=""
         btnStyle={
-          "rounded-2xl p-4 bg-pink-500 shadow-lg shadow-indigo-500/50 text-2xl text-white"
+          "rounded-lg lg:py-2 lg:px-3 md:py-2 md:px-3 px-2 py-1 bg-fuchsia-800 shadow-lg shadow-indigo-500/50 lg:text-3xl md:text-xl text-base font-semibold text-white"
         }
+        btnSrc="plus.png"
       />
     </form>
   );
