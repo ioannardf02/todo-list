@@ -3,20 +3,25 @@ import Button from "../Button";
 
 const AddTask = () => {
   const [input, setInput] = useState("");
-  const [todos, setTodos] = useState(["gggg"]);
+  const [todos, setTodos] = useState([{ id: 0, input: "gggg" }]);
 
   function handleAddTodo() {
-    setTodos((todos) => [...todos, input]);
     setInput("");
+    setTodos([
+      {
+        id: todos.length,
+        input: input,
+      },
+      ...todos,
+    ]);
   }
 
   console.log(todos);
 
   return (
     <>
-      <form className="flex flex-row gap-4">
+      <div className="flex flex-row gap-4">
         <input
-          id="inputId"
           value={input}
           placeholder="Enter your task..."
           className="border-b-2 border-fuchsia-800 focus:outline-hidden lg:text-lg md:text-xl text-base"
@@ -30,16 +35,16 @@ const AddTask = () => {
           }
           imgSrc="plus.png"
         />
-      </form>
+      </div>
       <ul>
         {todos.map((todo) => (
           <li
-            key={todo}
+            key={todo.id}
             className="flex justify-between p-2 hover:border  hover:border-fuchsia-700 hover:rounded-xl text-left items-center"
           >
             <span className="flex gap-3 pr-15 has-checked:line-through has-checked:decoration-black peer lg:text-xl md:text-lg text-base ">
               <input type="checkbox" className="accent-pink-500" />
-              {todo}
+              {todo.input}
             </span>
             <Button
               text=""
