@@ -3,9 +3,9 @@ import Button from "../Button";
 
 const DownSideHome = () => {
   return (
-    <div className="flex items-center h-1/2">
-      <div className="flex flex-col rounded-3xl bg-violet-100 text-left items-center gap-5 p-10">
-        <p className=" text-xl font-light">
+    <div className="flex flex-col rounded-3xl bg-violet-100 text-left gap-5 p-10">
+      <div className="flex flex-col gap-4 w-1/2 items-left">
+        <p className=" lg:text-xl  text-sm font-light">
           Stay organized and boost your productivity with ease. Add your tasks,
           check them off as you go, and keep track of everything in one simple
           place. Whether it's work, study, or daily chores — we’ve got your
@@ -15,7 +15,7 @@ const DownSideHome = () => {
           <Button
             text={"Start to plan"}
             btnStyle={
-              "rounded-full p-4 bg-fuchsia-800 text-white hover:opacity-80"
+              "rounded-full p-3 bg-black text-white hover:bg-pink-500 hover:text-black transition ease-in-out hover:-translate-y-1"
             }
           />
         </Link>

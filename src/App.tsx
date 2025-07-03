@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router";
-import HomePage from "./components/pages/HomePage";
-import MyListPage from "./components/pages/MyListPage";
+import HomePage from "./pages/HomePage";
+import MyListPage from "./pages/MyListPage";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/mylist" element={<MyListPage />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/mylist" element={<MyListPage />} />
+      <Route path="/*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 export default App;
