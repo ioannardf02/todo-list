@@ -1,16 +1,16 @@
 const Button = ({
   text,
   btnStyle,
-  btnSrc,
+  imgSrc,
 }: {
   text?: string;
   btnStyle: string;
-  btnSrc?: string;
+  imgSrc?: string;
 }) => {
   return (
     <button className={btnStyle}>
       {text}
-      <img src={btnSrc} />
+      {imgSrc && <img src={imgSrc} />}
     </button>
   );
 };

@@ -12,7 +12,7 @@ const AddTask = () => {
         btnStyle={
           "rounded-lg lg:py-2 lg:px-3 md:py-2 md:px-3 px-2 py-1 bg-fuchsia-800 shadow-lg shadow-indigo-500/50 lg:text-3xl md:text-xl text-base font-semibold text-white"
         }
-        btnSrc="plus.png"
+        imgSrc="plus.png"
       />
     </form>
   );

@@ -14,7 +14,7 @@ const InputTask = () => {
       <Button
         text=""
         btnStyle="text-xl font-semibold peer-has-checked:hidden lg:h-6 lg:w-6 md:h-5 md:w-5 h-4 w-4"
-        btnSrc="recycle-bin.png"
+        imgSrc="recycle-bin.png"
       />
     </li>
   ));
