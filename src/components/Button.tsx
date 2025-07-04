@@ -4,15 +4,15 @@ const Button = ({
   text,
   btnStyle,
   imgSrc,
-  addTask,
+  onClick,
 }: {
   text?: string;
   btnStyle: string;
   imgSrc?: string;
-  addTask?: MouseEventHandler;
+  onClick?: MouseEventHandler;
 }) => {
   return (
-    <button className={btnStyle} onClick={addTask}>
+    <button className={btnStyle} onClick={onClick}>
       {text}
       {imgSrc && <img src={imgSrc} />}
     </button>

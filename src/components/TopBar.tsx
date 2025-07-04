@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 
 const TopBar = () => {
   return (
-    <div className="flex flex-row justify-between lg:p-2 p-1 items-center w-full">
+    <div className="flex flex-row justify-between lg:py-2 py-1 items-center w-full">
       <div className="flex flex-row gap-2 items-center">
         <img
           src="https://cdn-icons-png.flaticon.com/512/8019/8019152.png"
