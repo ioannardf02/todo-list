@@ -1,6 +1,6 @@
 import type { MouseEventHandler } from "react";
 import Button from "../Button";
-import type { Task } from "../Task";
+import type { Task } from "../../models/types/Task";
 
 const InputTask = ({
   todo,
@@ -27,7 +27,7 @@ const InputTask = ({
             onClick={() => deleteTask(todo.name)}
             text=""
             btnStyle="text-xl font-semibold peer-has-checked:hidden lg:h-6 lg:w-6 md:h-5 md:w-5 h-4 w-4"
-            imgSrc="recycle-bin.png"
+            imgSrc="recycle-bin.svg"
           />
         </li>
       </ul>

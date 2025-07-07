@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../Button";
-import type { Task } from "../Task";
+import type { Task } from "../../models/types/Task";
 import InputTask from "./InputTask";
 import InfoList from "./InfoList";
 import { InfoContext } from "../InfoContext";
