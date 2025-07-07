@@ -59,9 +59,9 @@ const List = () => {
             onClick={handleAddTodo}
             text=""
             btnStyle={
-              "rounded-lg lg:py-2 lg:px-3 md:py-2 md:px-3 px-2 py-1 bg-fuchsia-800 shadow-lg shadow-indigo-500/50 lg:text-3xl md:text-xl text-base font-semibold text-white"
+              "rounded-lg lg:h-10 lg:w-10 md:h-9 md:w-9 h-8 w-8  bg-fuchsia-800 shadow-lg shadow-indigo-500/50 lg:text-3xl md:text-xl text-base font-semibold text-white"
             }
-            imgSrc="plus.png"
+            imgSrc="addTask.svg"
           />
         </div>
         <ul>
