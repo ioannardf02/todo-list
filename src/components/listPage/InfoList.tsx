@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import SearchBar from "../SearchBar";
-import { InfoContext } from "../InfoContext";
+import { InfoContext } from "../../hooks/contexts/InfoContext";
 
 const InfoList = () => {
   const { total, completed } = useContext(InfoContext);
 
   return (
-    <div className="flex gap-2 lg:flex-row flex-col lg:justify-between justify-start md:items-center md:justify-between md:flex-row lg:items-center font-medium">
+    <div className="flex gap-2 lg:flex-row flex-col lg:justify-between md:items-center md:justify-between md:flex-row lg:items-center font-medium">
       <h1 className="lg:text-3xl md:text-2xl text-xl text-fuchsia-900 font-light">
         Your ToDo List
       </h1>
