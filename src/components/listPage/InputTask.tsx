@@ -1,4 +1,3 @@
-import type { MouseEventHandler } from "react";
 import Button from "../Button";
 import type { Task } from "../../models/types/Task";
 
@@ -9,7 +8,7 @@ const InputTask = ({
 }: {
   todo: Task;
   deleteTask(nameDelete: string): void;
-  completedClick: MouseEventHandler;
+  completedClick(id: number): void;
 }) => {
   return (
     <div>
@@ -18,8 +17,9 @@ const InputTask = ({
           <span className="flex gap-3 pr-15 has-checked:line-through has-checked:decoration-black peer lg:text-xl md:text-lg text-base ">
             <input
               type="checkbox"
+              checked={todo.done}
               className="accent-pink-500"
-              onClick={completedClick}
+              onChange={() => completedClick(todo.id)}
             />
             {todo.name}
           </span>
