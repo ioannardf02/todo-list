@@ -1,47 +1,21 @@
-import { useState } from "react";
 import Button from "../Button";
 import type { Task } from "../../models/types/Task";
 import InputTask from "./InputTask";
 import InfoList from "./InfoList";
-import { InfoContext } from "../InfoContext";
+import { InfoContext } from "../../contexts/InfoContext";
+import useList from "../../hooks/custom/useList";
 
 const List = () => {
-  const [input, setInput] = useState("");
-  const [todos, setTodos] = useState<Task[]>([]);
-  const [total, setTotal] = useState(0);
-  const [completed, setCompleted] = useState(0);
-  // const [flag, setFlag] = useState(false);
-
-  function handleAddTodo() {
-    if (input !== "") {
-      setTotal(total + 1);
-      setInput("");
-      setTodos([
-        {
-          name: input,
-          id: todos.length,
-        },
-        ...todos,
-      ]);
-    }
-  }
-  function deleteTask(nameDelete: string) {
-    setTodos(todos.filter((t) => t.name !== nameDelete));
-  }
-
-  // useEffect(() => {
-  //   if (flag) {
-  //     setFlag(false);
-  //   } else {
-  //     setFlag(true);
-  //   }
-  // });
-
-  function completedClick() {
-    setCompleted(completed + 1);
-    // setFlag(true);
-  }
-  console.log(todos);
+  const {
+    completedClick,
+    handleAddTodo,
+    deleteTask,
+    todos,
+    total,
+    completed,
+    input,
+    setInput,
+  } = useList();
 
   return (
     <>
@@ -64,18 +38,22 @@ const List = () => {
             imgSrc="addTask.svg"
           />
         </div>
-        <ul>
-          {todos.map((todo: Task, key: number) => {
-            return (
-              <InputTask
-                todo={todo}
-                key={key}
-                deleteTask={deleteTask}
-                completedClick={completedClick}
-              />
-            );
-          })}
-        </ul>
+        {todos.length === 0 ? (
+          <p>You don't have Tasks!</p>
+        ) : (
+          <ul>
+            {todos.map((todo: Task, key: number) => {
+              return (
+                <InputTask
+                  todo={todo}
+                  key={key}
+                  deleteTask={deleteTask}
+                  completedClick={completedClick}
+                />
+              );
+            })}
+          </ul>
+        )}
       </InfoContext.Provider>
     </>
   );
