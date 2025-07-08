@@ -2,15 +2,6 @@ import { useEffect, useState } from "react";
 import type { Task } from "../../models/types/Task";
 
 export default function useList() {
-  // const getData = () => {
-  //   const data = localStorage.getItem("listToDo");
-  //   if (data) {
-  //     return JSON.parse(data);
-  //   } else {
-  //     return [];
-  //   }
-  // };
-
   const [todos, setTodos] = useState<Task[]>([]);
   const [input, setInput] = useState("");
   const [total, setTotal] = useState(0);
@@ -20,6 +11,12 @@ export default function useList() {
     localStorage.setItem("listToDo", JSON.stringify(todos));
   }, [todos]);
 
+  useEffect(() => {
+    const list = localStorage.getItem("listToDo");
+    if (list) {
+      return setTodos(JSON.parse(list));
+    }
+  }, []);
   const completed = todos.filter((todo) => todo.done).length;
 
   useEffect(() => {
@@ -42,7 +39,6 @@ export default function useList() {
         },
         ...todos,
       ]);
-      // localStorage.getItem("listToDo");
     }
   }
   function deleteTask(taskDelete: number) {
