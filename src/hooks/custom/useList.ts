@@ -2,23 +2,23 @@ import { useEffect, useState } from "react";
 import type { Task } from "../../models/types/Task";
 
 export default function useList() {
-  const getData = () => {
-    const data = localStorage.getItem("listToDo");
-    if (data) {
-      return JSON.parse(data);
-    } else {
-      return [];
-    }
-  };
+  // const getData = () => {
+  //   const data = localStorage.getItem("listToDo");
+  //   if (data) {
+  //     return JSON.parse(data);
+  //   } else {
+  //     return [];
+  //   }
+  // };
 
-  const [todos, setTodos] = useState<Task[]>(getData());
+  const [todos, setTodos] = useState<Task[]>([]);
   const [input, setInput] = useState("");
   const [total, setTotal] = useState(0);
   const [empty, setEmpty] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem("listToDo", JSON.stringify(input));
-  }, [input]);
+    localStorage.setItem("listToDo", JSON.stringify(todos));
+  }, [todos]);
 
   const completed = todos.filter((todo) => todo.done).length;
 
@@ -42,10 +42,11 @@ export default function useList() {
         },
         ...todos,
       ]);
+      // localStorage.getItem("listToDo");
     }
   }
-  function deleteTask(nameDelete: string) {
-    setTodos(todos.filter((t) => t.name !== nameDelete));
+  function deleteTask(taskDelete: number) {
+    setTodos(todos.filter((t) => t.id !== taskDelete));
     setTotal(total - 1);
   }
   function completedClick(id: number) {

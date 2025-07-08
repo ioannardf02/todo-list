@@ -7,7 +7,7 @@ const InputTask = ({
   completedClick,
 }: {
   todo: Task;
-  deleteTask(nameDelete: string): void;
+  deleteTask(idDelete: number): void;
   completedClick(id: number): void;
 }) => {
   return (
@@ -24,7 +24,7 @@ const InputTask = ({
             {todo.name}
           </span>
           <Button
-            onClick={() => deleteTask(todo.name)}
+            onClick={() => deleteTask(todo.id)}
             text=""
             btnStyle="text-xl font-semibold peer-has-checked:hidden lg:h-6 lg:w-6 md:h-5 md:w-5 h-4 w-4"
             imgSrc="recycle-bin.svg"
