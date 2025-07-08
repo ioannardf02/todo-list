@@ -8,21 +8,25 @@ export default function useList() {
   const [empty, setEmpty] = useState(true);
 
   useEffect(() => {
-    if(todos.length > 0) {
+    if (todos.length > 0) {
       localStorage.setItem("listToDo", JSON.stringify(todos));
     }
   }, [todos]);
 
   useEffect(() => {
     const list = localStorage.getItem("listToDo");
+    const totalList = localStorage.getItem("total");
+    const parsedTotal = totalList ? JSON.parse(totalList) : 0;
     const parsedList = list ? JSON.parse(list) : [];
     if (parsedList.length > 0) {
       return setTodos(parsedList);
+      return setTotal(parsedTotal);
     }
   }, []);
   const completed = todos.filter((todo) => todo.done).length;
 
   useEffect(() => {
+    localStorage.setItem("total", JSON.stringify(total));
     if (total === 0) {
       setEmpty(true);
     } else {
@@ -30,6 +34,7 @@ export default function useList() {
     }
   }, [total]);
 
+  useEffect(() => {});
   function handleAddTodo() {
     if (input !== "") {
       setTotal(total + 1);
