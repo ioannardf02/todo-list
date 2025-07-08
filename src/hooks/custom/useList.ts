@@ -2,10 +2,23 @@ import { useEffect, useState } from "react";
 import type { Task } from "../../models/types/Task";
 
 export default function useList() {
+  const getData = () => {
+    const data = localStorage.getItem("listToDo");
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return [];
+    }
+  };
+
+  const [todos, setTodos] = useState<Task[]>(getData());
   const [input, setInput] = useState("");
-  const [todos, setTodos] = useState<Task[]>([]);
   const [total, setTotal] = useState(0);
   const [empty, setEmpty] = useState(true);
+
+  useEffect(() => {
+    localStorage.setItem("listToDo", JSON.stringify(input));
+  }, [input]);
 
   const completed = todos.filter((todo) => todo.done).length;
 
