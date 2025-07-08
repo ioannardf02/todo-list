@@ -2,7 +2,7 @@ import Button from "../Button";
 import type { Task } from "../../models/types/Task";
 import InputTask from "./InputTask";
 import InfoList from "./InfoList";
-import { InfoContext } from "../../hooks/contexts/InfoContext";
+import { InfoContext } from "../../contexts/InfoContext";
 import useList from "../../hooks/custom/useList";
 
 const List = () => {

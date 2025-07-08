@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import SearchBar from "../SearchBar";
-import { InfoContext } from "../../hooks/contexts/InfoContext";
+import { InfoContext } from "../../contexts/InfoContext";
 
 const InfoList = () => {
   const { total, completed } = useContext(InfoContext);
