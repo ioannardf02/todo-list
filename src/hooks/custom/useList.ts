@@ -20,9 +20,12 @@ export default function useList() {
     const parsedList = list ? JSON.parse(list) : [];
     if (parsedList.length > 0) {
       return setTodos(parsedList);
+    }
+    if (parsedTotal > 0) {
       return setTotal(parsedTotal);
     }
   }, []);
+
   const completed = todos.filter((todo) => todo.done).length;
 
   useEffect(() => {
