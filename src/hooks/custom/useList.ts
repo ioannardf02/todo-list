@@ -8,13 +8,16 @@ export default function useList() {
   const [empty, setEmpty] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem("listToDo", JSON.stringify(todos));
+    if(todos.length > 0) {
+      localStorage.setItem("listToDo", JSON.stringify(todos));
+    }
   }, [todos]);
 
   useEffect(() => {
     const list = localStorage.getItem("listToDo");
-    if (list) {
-      return setTodos(JSON.parse(list));
+    const parsedList = list ? JSON.parse(list) : [];
+    if (parsedList.length > 0) {
+      return setTodos(parsedList);
     }
   }, []);
   const completed = todos.filter((todo) => todo.done).length;
