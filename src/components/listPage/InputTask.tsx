@@ -7,8 +7,8 @@ const InputTask = ({
   completedClick,
 }: {
   todo: Task;
-  deleteTask(idDelete: number): void;
-  completedClick(id: number): void;
+  deleteTask(idDelete: string): void;
+  completedClick(id: string): void;
 }) => {
   return (
     <div>
