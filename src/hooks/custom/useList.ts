@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Task } from "../../models/types/Task";
 
 export default function useList() {
@@ -7,6 +7,7 @@ export default function useList() {
   const [total, setTotal] = useState(0);
   const [empty, setEmpty] = useState(true);
   const [inputSearch, setInputSearch] = useState("");
+  const uniqueId = self.crypto.randomUUID();
 
   const completed = useMemo(
     () => todos.filter((todo) => todo.done).length,
@@ -42,7 +43,6 @@ export default function useList() {
   }, [total]);
 
   function handleAddTodo() {
-    const uniqueId = useId();
     if (input !== "") {
       setTotal(total + 1);
       setInput("");
