@@ -1,13 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Task } from "../../models/types/Task";
 
 export default function useList() {
-  const [input, setInput] = useState("");
   const [todos, setTodos] = useState<Task[]>([]);
+  const [input, setInput] = useState("");
   const [total, setTotal] = useState(0);
   const [empty, setEmpty] = useState(true);
+  const [inputSearch, setInputSearch] = useState("");
+  const uniqueId = self.crypto.randomUUID();
 
-  const completed = todos.filter((todo) => todo.done).length;
+  const completed = useMemo(
+    () => todos.filter((todo) => todo.done).length,
+    [todos]
+  );
+
+  useEffect(() => {
+    if (todos.length > 0) {
+      localStorage.setItem("listToDo", JSON.stringify(todos));
+      setTotal(todos.length);
+    }
+  }, [todos]);
+
+  useEffect(() => {
+    const list = localStorage.getItem("listToDo");
+    const parsedList = list ? JSON.parse(list) : [];
+    if (parsedList.length > 0) {
+      return setTodos(parsedList);
+    }
+  }, []);
 
   useEffect(() => {
     if (total === 0) {
@@ -19,23 +39,26 @@ export default function useList() {
 
   function handleAddTodo() {
     if (input !== "") {
-      setTotal(total + 1);
+      setTotal(todos.length + 1);
       setInput("");
       setTodos([
         {
           name: input,
-          id: todos.length,
+          id: uniqueId,
           done: false,
         },
         ...todos,
       ]);
     }
   }
-  function deleteTask(nameDelete: string) {
-    setTodos(todos.filter((t) => t.name !== nameDelete));
-    setTotal(total - 1);
+
+  function deleteTask(taskDelete: string) {
+    setTodos(todos.filter((t) => t.id !== taskDelete));
+    setTotal(todos.length - 1);
+    localStorage.removeItem("listToDo");
   }
-  function completedClick(id: number) {
+
+  function completedClick(id: string) {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
@@ -44,6 +67,13 @@ export default function useList() {
         return todo;
       })
     );
+  }
+  function searchTask(input: string) {
+    const listSearch = todos.filter((t) =>
+      t.name.toLowerCase().includes(input.toLowerCase())
+    );
+    console.log(listSearch);
+    return listSearch;
   }
   console.log(todos);
   return {
@@ -56,5 +86,8 @@ export default function useList() {
     input,
     setInput,
     empty,
+    searchTask,
+    inputSearch,
+    setInputSearch,
   };
 }
