@@ -1,18 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Task } from "../../models/types/Task";
 
 export default function useList() {
   const [todos, setTodos] = useState<Task[]>([]);
   const [input, setInput] = useState("");
   const [total, setTotal] = useState(0);
-  const [empty, setEmpty] = useState(true);
-  const [inputSearch, setInputSearch] = useState("");
-  const uniqueId = self.crypto.randomUUID();
-
-  const completed = useMemo(
-    () => todos.filter((todo) => todo.done).length,
-    [todos]
-  );
 
   useEffect(() => {
     if (todos.length > 0) {
@@ -29,15 +21,8 @@ export default function useList() {
     }
   }, []);
 
-  useEffect(() => {
-    if (total === 0) {
-      setEmpty(true);
-    } else {
-      setEmpty(false);
-    }
-  }, [total]);
-
   function handleAddTodo() {
+    const uniqueId = self.crypto.randomUUID();
     if (input !== "") {
       setTotal(todos.length + 1);
       setInput("");
@@ -68,26 +53,14 @@ export default function useList() {
       })
     );
   }
-  function searchTask(input: string) {
-    const listSearch = todos.filter((t) =>
-      t.name.toLowerCase().includes(input.toLowerCase())
-    );
-    console.log(listSearch);
-    return listSearch;
-  }
-  console.log(todos);
+
   return {
     completedClick,
     handleAddTodo,
     deleteTask,
     todos,
     total,
-    completed,
     input,
     setInput,
-    empty,
-    searchTask,
-    inputSearch,
-    setInputSearch,
   };
 }
