@@ -17,24 +17,19 @@ export default function useList() {
   useEffect(() => {
     if (todos.length > 0) {
       localStorage.setItem("listToDo", JSON.stringify(todos));
+      setTotal(todos.length);
     }
   }, [todos]);
 
   useEffect(() => {
     const list = localStorage.getItem("listToDo");
-    const totalList = localStorage.getItem("total");
-    const parsedTotal = totalList ? JSON.parse(totalList) : 0;
     const parsedList = list ? JSON.parse(list) : [];
-    if (parsedTotal > 0) {
-      return setTotal(parsedTotal);
-    }
     if (parsedList.length > 0) {
       return setTodos(parsedList);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("total", JSON.stringify(total));
     if (total === 0) {
       setEmpty(true);
     } else {
@@ -44,7 +39,7 @@ export default function useList() {
 
   function handleAddTodo() {
     if (input !== "") {
-      setTotal(total + 1);
+      setTotal(todos.length + 1);
       setInput("");
       setTodos([
         {
@@ -59,7 +54,7 @@ export default function useList() {
 
   function deleteTask(taskDelete: string) {
     setTodos(todos.filter((t) => t.id !== taskDelete));
-    setTotal(total - 1);
+    setTotal(todos.length - 1);
     localStorage.removeItem("listToDo");
   }
 
