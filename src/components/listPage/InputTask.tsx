@@ -13,12 +13,12 @@ const InputTask = ({
   return (
     <div>
       <ul className="w-full">
-        <li className="flex justify-between p-2 hover:border  hover:border-fuchsia-700 hover:rounded-xl text-left items-center">
+        <li className="flex justify-between p-2 hover:border  hover:border-fuchsia-700 dark:hover:border-slate-100 hover:rounded-xl text-left items-center">
           <span className="flex gap-3 pr-15 has-checked:line-through has-checked:decoration-black peer lg:text-xl md:text-lg text-base ">
             <input
               type="checkbox"
               checked={todo.done}
-              className="accent-pink-500"
+              className="accent-pink-500 dark:accent-black"
               onChange={() => completedClick(todo.id)}
             />
             {todo.name}

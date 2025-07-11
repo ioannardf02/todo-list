@@ -19,7 +19,7 @@ const List = () => {
   } = useList();
 
   const [search, setSearch] = useState<string>("");
-  const debouncedSearch = useDebounce(search, 2000);
+  const debouncedSearch = useDebounce(search, 800);
 
   const searchList = useMemo(() => {
     if (search !== "") {
@@ -35,10 +35,46 @@ const List = () => {
     () => todos.filter((todo) => todo.done).length,
     [todos]
   );
-  console.log(search);
 
+  function checkList() {
+    if (todos.length === 0) {
+      return <p>You don't have Tasks!</p>;
+    } else if (
+      todos.length > 0 &&
+      searchList.length === 0 &&
+      debouncedSearch !== ""
+    ) {
+      return <p>You don't have Tasks!</p>;
+    }
+  }
+  function getToDosList() {
+    if (todos.length > 0 && searchList.length === 0 && debouncedSearch === "") {
+      return todos.map((todo: Task, key: number) => {
+        return (
+          <InputTask
+            todo={todo}
+            key={key}
+            deleteTask={deleteTask}
+            completedClick={completedClick}
+          />
+        );
+      });
+    }
+  }
+  function getSearchList() {
+    if (searchList.length > 0) {
+      return searchList.map((search: Task, key: number) => (
+        <InputTask
+          todo={search}
+          key={key + 1}
+          deleteTask={deleteTask}
+          completedClick={completedClick}
+        />
+      ));
+    }
+  }
   return (
-    <>
+    <div>
       <InfoContext.Provider value={{ total, completed }}>
         <InfoList />
         <div className="flex flex-col justify-center items-center gap-4">
@@ -67,35 +103,14 @@ const List = () => {
               imgSrc="addTask.svg"
             />
           </div>
-          {todos.length === 0 && <p>You don't have Tasks!</p>}
-          {todos.length > 0 &&
-            searchList.length === 0 &&
-            debouncedSearch !== "" && <p>You don't have Tasks!</p>}
+          {checkList()}
           <ul>
-            {searchList.length > 0 &&
-              searchList.map((search: Task, key: number) => (
-                <InputTask
-                  todo={search}
-                  key={key + 1}
-                  deleteTask={deleteTask}
-                  completedClick={completedClick}
-                />
-              ))}
-            {(todos.length > 0 || searchList.length === 0) &&
-              todos.map((todo: Task, key: number) => {
-                return (
-                  <InputTask
-                    todo={todo}
-                    key={key}
-                    deleteTask={deleteTask}
-                    completedClick={completedClick}
-                  />
-                );
-              })}
+            {getSearchList()}
+            {getToDosList()}
           </ul>
         </div>
       </InfoContext.Provider>
-    </>
+    </div>
   );
 };
 export default List;

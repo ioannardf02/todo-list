@@ -5,9 +5,8 @@ const InfoList = () => {
   const { total, completed } = useContext(InfoContext);
 
   return (
-    // <div className="flex gap-2 lg:flex-row flex-col items-center lg:justify-between md:justify-between md:flex-row font-medium">
-    <div className="flex lg:flex-row lg:justify-between flex-col md:flex-row md:justify-between items-center gap-2 ">
-      <h1 className="lg:text-3xl md:text-2xl text-xl text-fuchsia-900 font-light">
+    <div className="flex lg:flex-row lg:justify-between flex-col md:flex-row md:justify-between items-center gap-2 pb-4">
+      <h1 className="lg:text-3xl md:text-2xl text-xl text-fuchsia-900 dark:font-medium font-light">
         Your ToDo List
       </h1>
       <div className="flex lg:flex-row md:flex-row flex-col lg:gap-4 md:gap-3 gap-2 justify-between">
