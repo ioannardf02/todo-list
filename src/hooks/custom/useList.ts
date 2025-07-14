@@ -3,8 +3,8 @@ import type { Task } from "../../models/types/Task";
 
 export default function useList() {
   const [todos, setTodos] = useState<Task[]>([]);
-  const [input, setInput] = useState("");
-  const [total, setTotal] = useState(0);
+  const [input, setInput] = useState<string>("");
+  const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
     if (todos.length > 0) {
