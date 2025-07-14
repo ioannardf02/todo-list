@@ -2,22 +2,24 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 
 const TopBar = () => {
-  const [theme, setTheme] = useState<boolean>(false);
-  // document.documentElement.classList.toggle(
-  //   "dark",
-  //   localStorage.theme === "dark" ||
-  //     (!("theme" in localStorage) &&
-  //       window.matchMedia("(prefers-color-scheme: dark)").matches)
-  // );
+  const [isDark, setIsDark] = useState<boolean>(false);
+
   useEffect(() => {
-    if (theme === true) {
+      const body = document.body;
+    if (isDark) {
+        body.classList.add("dark");
+        body.classList.remove("light");
       localStorage.theme = "dark";
       document.documentElement.classList.toggle("dark");
+      document.querySelector("body")?.setAttribute("data-theme", "dark");
     } else {
+        body.classList.add("light");
+        body.classList.remove("dark");
       localStorage.theme = "light";
       document.documentElement.classList.toggle("light");
+        document.querySelector("body")?.setAttribute("data-theme", "light");
     }
-  }, [theme]);
+  }, [isDark]);
 
   return (
     <div className="flex flex-row justify-between lg:py-2 py-1 items-center w-full">
@@ -33,8 +35,8 @@ const TopBar = () => {
       <div className="flex flex-row gap-2">
         <div className="relative inline-block w-11 h-5">
           <input
-            onChange={() => setTheme(!theme)}
-            checked={theme}
+              checked={isDark}
+              onChange={() => setIsDark(!isDark)}
             id="switch-component"
             type="checkbox"
             className="peer appearance-none w-11 h-5 bg-slate-100 rounded-full checked:bg-slate-800 cursor-pointer transition-colors duration-300"
