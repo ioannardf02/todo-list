@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 
 const TopBar = () => {
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.theme === "dark";
+    }
+    return false;
+  });
 
   useEffect(() => {
     const body = document.body;
