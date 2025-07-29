@@ -21,14 +21,10 @@ export default function useList() {
   const [searchParams] = useSearchParams();
   let page = searchParams.get("page");
 
-  console.log(page);
-
   if (!page || parseInt(page) < 1) {
     redirect(`/mylist/?page=1`);
     page = "1";
   }
-  console.log(!page);
-  console.log(page);
 
   useEffect(() => {
     if (todos.length > 0) {
@@ -66,10 +62,9 @@ export default function useList() {
         };
         const res = await createToDo(data);
         listtodo.push(res);
-        setListtodo([res, ...listtodo]);
+        setListtodo([...listtodo]);
         setTotaldo(totaldo + 1);
         toast.success("Succcess Add");
-        console.log(totaldo);
         setInput("");
         setTodos([
           {
@@ -81,23 +76,21 @@ export default function useList() {
         ]);
       } catch (error) {
         console.log(error);
-        toast.error("Something went wrong");
+        toast.error("Try again!");
       }
     }
   }
-
   async function deleteTask(taskDelete: number) {
     try {
       await deleteToDo(taskDelete);
       const index = listtodo.findIndex((t) => t.id === taskDelete);
-      console.log(index);
       listtodo.splice(index, 1);
       setListtodo([...listtodo]);
       setTotaldo(totaldo - 1);
       toast.success("The task was deleted!");
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong!");
+      toast.error("The API is dummy, so the delete function doesn’t work!");
     }
     //other way if you use local storage//
     // setTodos(todos.filter((t) => t.id !== taskDelete));
@@ -123,11 +116,9 @@ export default function useList() {
       // setListtodo([...listtodo]);
     } catch (error) {
       console.log(error);
-      toast.error("Error");
+      toast.error("The API is dummy, so the completed function does not work.");
     }
   }
-  console.log(listtodo);
-
   return {
     completedClick,
     handleAddTodo,

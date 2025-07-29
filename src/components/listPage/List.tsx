@@ -3,9 +3,9 @@ import InputTask from "./InputTask";
 import InfoList from "./InfoList";
 import { InfoContext } from "../../contexts/InfoContext";
 import useList from "../../hooks/custom/useList";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import useDebounce from "../../hooks/custom/useDebounce";
-import { getToDoById, type ListToDo } from "../../api/listToDos/todo";
+import { type ListToDo } from "../../api/listToDos/todo";
 import { PaginationDemo } from "../Pagination";
 
 const List = () => {
@@ -32,7 +32,7 @@ const List = () => {
     } else {
       return [];
     }
-  }, [debouncedSearch]);
+  }, [debouncedSearch, listtodo]);
 
   const completed = useMemo(
     () => listtodo.filter((todo) => todo.completed).length,
@@ -50,15 +50,6 @@ const List = () => {
       return <p className="dark:text-black">You don't have Tasks!</p>;
     }
   }
-  useEffect(() => {
-    const getSearchList = async () => {
-      if (searchList.length > 0) {
-        const res = await getToDoById(search);
-        setSearch(res.todo);
-      }
-    };
-    getSearchList();
-  }, []);
 
   return (
     <div>
@@ -103,10 +94,10 @@ const List = () => {
             {listtodo.length > 0 &&
               searchList.length === 0 &&
               debouncedSearch === "" &&
-              listtodo.map((todo: ListToDo, key: number) => (
+              listtodo.map((todo: ListToDo) => (
                 <InputTask
                   todo={todo}
-                  key={key}
+                  key={todo.id}
                   completedClick={completedClick}
                   deleteTask={deleteTask}
                 />

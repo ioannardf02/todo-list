@@ -11,7 +11,7 @@ const DownSideHome = ({ loadingFun }: { loadingFun: MouseEventHandler }) => {
           back. Let’s get things done, one task at a time!
         </p>
         <Button
-          text={"Start to plan"}
+          text={"Start planning"}
           btnStyle={
             "rounded-full p-3 bg-black text-white hover:bg-pink-500 hover:text-black dark:hover:bg-gray-800 dark:hover:text-white transition ease-in-out hover:-translate-y-1"
           }

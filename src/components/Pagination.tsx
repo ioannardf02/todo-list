@@ -15,8 +15,6 @@ export function PaginationDemo({
   totalItems: number;
 }) {
   const totalPage = Math.ceil(totalItems / 10);
-  console.log(totalPage);
-
   return (
     <Pagination>
       <PaginationContent>
@@ -25,14 +23,13 @@ export function PaginationDemo({
             <PaginationPrevious href={`/mylist/?page=${parseInt(pages) - 1}`} />
           )}
         </PaginationItem>
-
         <PaginationItem>
           <PaginationLink href={`/mylist/?page=${pages}`} isActive>
             {pages}
           </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          {parseInt(pages) < 26 && (
+          {parseInt(pages) < totalPage && (
             <PaginationNext href={`/mylist/?page=${parseInt(pages) + 1}`} />
           )}
         </PaginationItem>
