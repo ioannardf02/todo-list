@@ -1,15 +1,12 @@
+import type { ListToDo } from "@/models/types/ListToDo";
 import { axiosInstance } from "..";
 
-export type ListToDo = {
-  id?: number;
-  todo: string;
-  completed: boolean;
-  userId: number;
-  isDeleted?: boolean;
-  deletedOn?: Date;
-};
-
-export const getAllTodos = async () => {
+export const getAllTodos = async (): Promise<{
+  todos: ListToDo[];
+  skip: number;
+  limit: number;
+  total: number;
+}> => {
   const res = await axiosInstance.get(`/todos`);
   return res.data;
 };
@@ -19,7 +16,7 @@ export const getToDoById = async (id: string): Promise<ListToDo> => {
   return res.data;
 };
 
-export const getRandomToDo = async () => {
+export const getRandomToDo = async (): Promise<ListToDo> => {
   const res = await axiosInstance.get(`/todos/random`);
   return res.data;
 };
