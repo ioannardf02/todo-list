@@ -1,5 +1,5 @@
+import type { ListToDo } from "@/models/types/ListToDo";
 import Button from "../Button";
-import type { ListToDo } from "../../api/listToDos/todo";
 
 const InputTask = ({
   todo,
