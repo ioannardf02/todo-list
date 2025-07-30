@@ -5,17 +5,16 @@ import { InfoContext } from "../../contexts/InfoContext";
 import useList from "../../hooks/custom/useList";
 import { useMemo, useState } from "react";
 import useDebounce from "../../hooks/custom/useDebounce";
-import { type ListToDo } from "../../api/listToDos/todo";
 import { PaginationDemo } from "../Pagination";
+import type { ListToDo } from "@/models/types/ListToDo";
 
 const List = () => {
   const {
     completedClick,
     handleAddTodo,
     deleteTask,
-    total,
-    input,
     setInput,
+    input,
     listtodo,
     totaldo,
     page,
@@ -50,10 +49,9 @@ const List = () => {
       return <p className="dark:text-black">You don't have Tasks!</p>;
     }
   }
-
   return (
     <div>
-      <InfoContext.Provider value={{ total, completed, totaldo }}>
+      <InfoContext.Provider value={{ completed, totaldo }}>
         <InfoList />
         <div className="flex flex-col justify-center items-center gap-4">
           <div className="flex flex-row gap-1">
