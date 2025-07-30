@@ -7,7 +7,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/mylist" element={<MyListPage />} />
+      <Route path={`/mylist`} element={<MyListPage />} />
       <Route path="/*" element={<NotFoundPage />} />
     </Routes>
   );

@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 
 const TopBar = () => {
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.theme === "dark";
+    }
+    return false;
+  });
 
   useEffect(() => {
     const body = document.body;
@@ -40,7 +45,7 @@ const TopBar = () => {
             onChange={() => setIsDark(!isDark)}
             id="switch-component"
             type="checkbox"
-            className="peer appearance-none w-11 h-5 bg-slate-100 rounded-full checked:bg-slate-800 cursor-pointer transition-colors duration-300"
+            className="peer appearance-none w-11 h-5 bg-slate-100 rounded-full checked:bg-fuchsia-800 cursor-pointer transition-colors duration-300"
           />
           <label
             htmlFor="switch-component"

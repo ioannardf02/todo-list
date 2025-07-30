@@ -1,7 +1,7 @@
 const Loading = () => {
   return (
     <div className=" animate-pulse">
-      <div className="flex flex-col gap-3 p-5">
+      <div className="flex flex-col gap-3 py-3">
         <div className="flex w-1/2 h-1/3 rounded-xl p-10 bg-violet-50"></div>
         <div className="flex w-1/4 h-1/3 rounded-xl p-10 bg-violet-50"></div>
       </div>
