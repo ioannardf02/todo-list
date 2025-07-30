@@ -45,7 +45,7 @@ const TopBar = () => {
             onChange={() => setIsDark(!isDark)}
             id="switch-component"
             type="checkbox"
-            className="peer appearance-none w-11 h-5 bg-slate-100 rounded-full checked:bg-slate-800 cursor-pointer transition-colors duration-300"
+            className="peer appearance-none w-11 h-5 bg-slate-100 rounded-full checked:bg-fuchsia-800 cursor-pointer transition-colors duration-300"
           />
           <label
             htmlFor="switch-component"

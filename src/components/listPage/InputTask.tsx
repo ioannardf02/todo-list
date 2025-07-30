@@ -13,8 +13,8 @@ const InputTask = ({
   return (
     <div>
       <ul className="w-full">
-        <li className="flex justify-between p-2 hover:border  hover:border-fuchsia-700 dark:hover:border-slate-100 hover:rounded-xl text-left items-center">
-          <span className="flex gap-3 pr-15 has-checked:line-through has-checked:decoration-black peer lg:text-xl md:text-lg text-base dark:text-black">
+        <li className="flex justify-between p-1 hover:border hover:border-fuchsia-700 dark:hover:border-slate-100 hover:rounded-xl text-left items-center">
+          <span className="flex gap-2 lg:pr-15 md:pr-10 pr-5 has-checked:line-through has-checked:decoration-black peer lg:text-xl md:text-lg text-sm dark:text-black">
             <input
               type="checkbox"
               checked={todo.completed}
@@ -23,12 +23,14 @@ const InputTask = ({
             />
             {todo.todo}
           </span>
-          <Button
-            onClick={() => deleteTask(todo?.id)}
-            text=""
-            btnStyle="text-xl font-semibold peer-has-checked:hidden lg:h-6 lg:w-6 md:h-5 md:w-5 h-4 w-4"
-            imgSrc="/recycle-bin.svg"
-          />
+          <div className="peer-has-checked:hidden">
+            <Button
+              onClick={() => deleteTask(todo?.id)}
+              text=""
+              btnStyle="text-xl font-semibold lg:h-6 lg:w-6 md:h-5 md:w-5 h-4 w-4"
+              imgSrc="/recycle-bin.svg"
+            />
+          </div>
         </li>
       </ul>
     </div>
